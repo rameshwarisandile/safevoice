@@ -5,14 +5,13 @@ import { ShieldCheck } from "lucide-react";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // ✅ Correct page paths for React Router (not file paths)
-   const navItems = [
+  const navItems = [
     { name: "Home", path: "src/pages/Home.jsx" },
     { name: "Support & Resources", path: "src/pages/Support.jsx" },
     { name: "Community & Awareness", path: "src/pages/Community.jsx" },
     { name: "AI Chatbot", path: "src/pages/Chatbot.jsx" },
   ];
-  
+
   return (
     <header className="bg-gradient-to-r from-[#0a1a3a] to-[#1a1f4b] text-white shadow-xl sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
@@ -28,11 +27,12 @@ const Header = () => {
         </div>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex space-x-8 text-sm font-semibold">
+        <nav className="hidden md:flex space-x-8 text-sm font-semibold relative">
           {navItems.map((item) => (
             <NavLink
               key={item.name}
               to={item.path}
+              end
               className={({ isActive }) =>
                 `relative pb-2 transition-all duration-300 ${
                   isActive
@@ -41,17 +41,23 @@ const Header = () => {
                 }`
               }
             >
-              {item.name}
-              {({ isActive }) =>
-                isActive && (
-                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#00f5d4] rounded-full"></span>
-                )
-              }
+              {({ isActive }) => (
+                <>
+                  {item.name}
+                  <span
+                    className={`absolute left-0 bottom-0 h-[2px] rounded-full transition-all duration-300 ${
+                      isActive
+                        ? "w-full bg-[#00f5d4]"
+                        : "w-0 group-hover:w-full bg-[#00bbf9]"
+                    }`}
+                  ></span>
+                </>
+              )}
             </NavLink>
           ))}
         </nav>
 
-        {/* ✅ Report Button (Now same color as logo) */}
+        {/* Report Button */}
         <button className="hidden md:block bg-gradient-to-r from-[#00f5d4] to-[#00bbf9] hover:from-[#00bbf9] hover:to-[#00f5d4] text-[#0b1f3a] font-semibold px-5 py-2 rounded-md shadow-lg transition-all">
           Report Incident
         </button>
@@ -76,6 +82,7 @@ const Header = () => {
             <NavLink
               key={item.name}
               to={item.path}
+              end
               className={({ isActive }) =>
                 `block ${
                   isActive
@@ -89,7 +96,7 @@ const Header = () => {
             </NavLink>
           ))}
 
-          {/* ✅ Matching color for Report button */}
+          {/* Mobile Report Button */}
           <button className="bg-gradient-to-r from-[#00f5d4] to-[#00bbf9] hover:from-[#00bbf9] hover:to-[#00f5d4] text-[#0b1f3a] font-semibold px-4 py-2 rounded-md shadow-md transition-all">
             Report Incident
           </button>
