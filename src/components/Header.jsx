@@ -1,20 +1,100 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { ShieldCheck } from "lucide-react";
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // ✅ Correct page paths for React Router (not file paths)
+   const navItems = [
+    { name: "Home", path: "src/pages/Home.jsx" },
+    { name: "Support & Resources", path: "src/pages/Support.jsx" },
+    { name: "Community & Awareness", path: "src/pages/Community.jsx" },
+    { name: "AI Chatbot", path: "src/pages/Chatbot.jsx" },
+  ];
+  
   return (
-    <header className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-blue-700">SafeVoice</h1>
-        <nav className="space-x-6 text-gray-700">
-          <a href="#" className="hover:text-blue-600">Home</a>
-          <a href="#" className="hover:text-blue-600">Support & Resources</a>
-          <a href="#" className="hover:text-blue-600">Community & Awareness</a>
-          <a href="#" className="hover:text-blue-600">AI Chatbot</a>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-md ml-4 hover:bg-blue-700">
+    <header className="bg-gradient-to-r from-[#0a1a3a] to-[#1a1f4b] text-white shadow-xl sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <div className="bg-gradient-to-r from-[#00f5d4] to-[#00bbf9] p-2 rounded-lg shadow-md hover:scale-105 transition-transform">
+            <ShieldCheck className="w-6 h-6 text-[#0b1f3a]" />
+          </div>
+          <h1 className="text-2xl font-extrabold tracking-wide">
+            <span className="text-[#00f5d4]">Safe</span>
+            <span className="text-white">Voice</span>
+          </h1>
+        </div>
+
+        {/* Desktop Menu */}
+        <nav className="hidden md:flex space-x-8 text-sm font-semibold">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.path}
+              className={({ isActive }) =>
+                `relative pb-2 transition-all duration-300 ${
+                  isActive
+                    ? "text-[#00f5d4]"
+                    : "text-gray-200 hover:text-[#00bbf9]"
+                }`
+              }
+            >
+              {item.name}
+              {({ isActive }) =>
+                isActive && (
+                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#00f5d4] rounded-full"></span>
+                )
+              }
+            </NavLink>
+          ))}
+        </nav>
+
+        {/* ✅ Report Button (Now same color as logo) */}
+        <button className="hidden md:block bg-gradient-to-r from-[#00f5d4] to-[#00bbf9] hover:from-[#00bbf9] hover:to-[#00f5d4] text-[#0b1f3a] font-semibold px-5 py-2 rounded-md shadow-lg transition-all">
+          Report Incident
+        </button>
+
+        {/* Mobile Menu Icon */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden focus:outline-none"
+        >
+          <i
+            className={`fas ${
+              menuOpen ? "fa-times" : "fa-bars"
+            } text-xl transition-all`}
+          ></i>
+        </button>
+      </div>
+
+      {/* Mobile Dropdown */}
+      {menuOpen && (
+        <div className="md:hidden bg-[#0a1a3a] border-t border-gray-700 flex flex-col space-y-3 py-3 px-6 text-sm">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.path}
+              className={({ isActive }) =>
+                `block ${
+                  isActive
+                    ? "text-[#00f5d4] font-semibold"
+                    : "text-gray-300 hover:text-[#00bbf9]"
+                } transition duration-300`
+              }
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.name}
+            </NavLink>
+          ))}
+
+          {/* ✅ Matching color for Report button */}
+          <button className="bg-gradient-to-r from-[#00f5d4] to-[#00bbf9] hover:from-[#00bbf9] hover:to-[#00f5d4] text-[#0b1f3a] font-semibold px-4 py-2 rounded-md shadow-md transition-all">
             Report Incident
           </button>
-        </nav>
-      </div>
+        </div>
+      )}
     </header>
   );
 };

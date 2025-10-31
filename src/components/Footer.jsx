@@ -1,55 +1,56 @@
-<footer className="bg-primary text-white py-10 px-6">
-  <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 border-b border-gray-600 pb-6">
-    {/* Column 1 - About */}
-    <div>
-      <h3 className="text-xl font-bold mb-3 text-accent">SafeVoice</h3>
-      <p className="text-gray-300 text-sm leading-relaxed">
-        SafeVoice is an anonymous AI-powered support portal helping victims
-        of harassment report safely, connect with NGOs, and get real-time
-        legal and emotional support. Empowering every voice to be heard.
-      </p>
-    </div>
+import React from "react";
 
-    {/* Column 2 - Quick Links */}
-    <div>
-      <h4 className="font-semibold mb-3 text-accent">Quick Links</h4>
-      <ul className="space-y-2 text-gray-300 text-sm">
-        <li><a href="#" className="hover:text-white transition">Report Incident</a></li>
-        <li><a href="#" className="hover:text-white transition">AI Chatbot</a></li>
-        <li><a href="#" className="hover:text-white transition">Support & Resources</a></li>
-        <li><a href="#" className="hover:text-white transition">Community & Awareness</a></li>
-        <li><a href="#" className="hover:text-white transition">Privacy & Security</a></li>
-      </ul>
-    </div>
+const Footer = () => {
+  return (
+    <footer className="bg-gradient-to-br from-[#0b1f3a] to-[#122a5a] text-white py-8 px-4 shadow-inner">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 border-b border-gray-600 pb-6">
+        {/* Column 1 - About */}
+        <div>
+          <h3 className="text-lg font-bold mb-2 text-sky-400">SafeVoice</h3>
+          <p className="text-gray-300 text-xs leading-relaxed">
+            SafeVoice is an AI-powered anonymous platform that helps victims
+            of harassment report safely and connect with verified NGOs,
+            counselors, and law enforcement — ensuring privacy and empathy.
+          </p>
+        </div>
 
-    {/* Column 3 - Social Links */}
-    <div>
-      <h4 className="font-semibold mb-3 text-accent">Follow Us</h4>
-      <div className="flex space-x-4 text-gray-300">
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
-          <i className="fab fa-facebook-f text-xl"></i>
-        </a>
-        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-pink-500 transition">
-          <i className="fab fa-instagram text-xl"></i>
-        </a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-sky-400 transition">
-          <i className="fab fa-twitter text-xl"></i>
-        </a>
-        <a href="https://in.pinterest.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-500 transition">
-          <i className="fab fa-pinterest text-xl"></i>
-        </a>
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition">
-          <i className="fab fa-linkedin-in text-xl"></i>
-        </a>
+        {/* Column 2 - Quick Links */}
+        <div>
+          <h4 className="font-semibold text-sm mb-2 text-sky-400">Quick Links</h4>
+          <ul className="space-y-1 text-gray-300 text-xs">
+            <li><a href="#" className="hover:text-sky-300 transition">Report Incident</a></li>
+            <li><a href="#" className="hover:text-sky-300 transition">AI Chatbot</a></li>
+            <li><a href="#" className="hover:text-sky-300 transition">Resources</a></li>
+            <li><a href="#" className="hover:text-sky-300 transition">Community</a></li>
+            <li><a href="#" className="hover:text-sky-300 transition">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        {/* Column 3 - Social Links */}
+        <div>
+          <h4 className="font-semibold text-sm mb-2 text-sky-400">Connect</h4>
+          <div className="flex space-x-3 text-gray-300">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-blue-400 hover:scale-110 transition"><i className="fab fa-facebook-f text-base"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-pink-500 hover:scale-110 transition"><i className="fab fa-instagram text-base"></i></a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-sky-400 hover:scale-110 transition"><i className="fab fa-twitter text-base"></i></a>
+            <a href="https://pinterest.com" target="_blank" rel="noreferrer" className="hover:text-red-500 hover:scale-110 transition"><i className="fab fa-pinterest text-base"></i></a>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-blue-500 hover:scale-110 transition"><i className="fab fa-linkedin-in text-base"></i></a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  {/* Bottom Bar */}
-  <div className="text-center text-gray-400 text-sm pt-6">
-    <p>
-      © {new Date().getFullYear()} SafeVoice — Created by <span className="text-accent font-medium">Team Destiny (PR25-14)</span>
-    </p>
-    <p className="mt-1">Empowering every voice through technology, empathy, and action.</p>
-  </div>
-</footer>
+      {/* Bottom Bar */}
+      <div className="text-center text-gray-400 text-xs mt-5">
+        <p>
+          © {new Date().getFullYear()} <span className="text-sky-400 font-semibold">SafeVoice</span> — by{" "}
+          <span className="font-medium text-white">Team Destiny (PR25-14)</span>
+        </p>
+        <p className="mt-1 italic">
+          Empowering every voice through technology & empathy.
+        </p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
